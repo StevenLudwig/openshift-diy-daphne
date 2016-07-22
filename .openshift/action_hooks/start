@@ -1,0 +1,17 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_DIY_IP:8080
+# nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
+
+# source $OPENSHIFT_DATA_DIR/bin/venv/bin/activate
+# nohup python $OPENSHIFT_REPO_DIR/diy/testpythonserver.py $OPENSHIFT_REPO_DIR &
+
+
+source $OPENSHIFT_DATA_DIR/bin/venv/bin/activate
+cd $OPENSHIFT_REPO_DIR/djangoproject/
+
+nohup daphne djangoproject.asgi:channel_layer -p $OPENSHIFT_DIY_PORT -b $OPENSHIFT_DIY_IP -v2 &
+nohup python manage.py runworker -v2 &
+
+

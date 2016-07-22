@@ -1,0 +1,13 @@
+Django==1.8.4
+Twisted==16.2.0
+asgi-redis==0.14.0
+asgiref==0.14.0
+autobahn==0.15.0
+channels==0.17.0
+daphne==0.14.2
+django-crispy-forms==1.6.0
+msgpack-python==0.4.7
+redis==2.10.5
+six==1.10.0
+txaio==2.5.1
+zope.interface==4.2.0

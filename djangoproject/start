@@ -1,0 +1,10 @@
+#!/bin/bash
+# This is a simple post deploy hook executed after your application
+# is deployed and started.  This script gets executed directly, so
+# it could be python, php, ruby, etc.
+
+source $OPENSHIFT_DATA_DIR/bin/venv/bin/activate
+cd $OPENSHIFT_REPO_DIR/djangoproject/
+
+nohup daphne djangoproject.asgi:channel_layer -p $OPENSHIFT_DIY_PORT -b $OPENSHIFT_DIY_IP -v2 &
+nohup python manage.py runworker -v2 &

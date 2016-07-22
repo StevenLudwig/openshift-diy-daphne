@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Activate virtual environment
+source $OPENSHIFT_DATA_DIR/bin/venv/bin/activate
+
+# Make sure packages in requirements.txt are installed
+pip3 install --no-cache-dir -r $OPENSHIFT_REPO_DIR/requirements.txt

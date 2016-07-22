@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WS index page</title>
+</head>
+<body>
+
+<form id="message-form" action="">
+  <input name="message" type="text">
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  // Note that the path doesn't matter for routing; any WebSocket
+  // connection gets bumped over to WebSocket consumers
+  var ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+	var port = ws_scheme === "wss" ? 8443 : 8000;
+	var connectionUrl = ws_scheme + '://' + window.location.host + ':' + port;
+
+  socket = new WebSocket(connectionUrl);
+
+  socket.onopen = function () {
+    console.log('Trying to establish connection');
+    socket.send("hello world");
+  };
+
+  socket.onmessage = function (e) {
+    console.log('Received: ', e.data);
+  };
+
+  socket.onclose = function (e) {
+    console.log('WS disconnected');
+  };
+
+
+  // send message through websocket on form submission
+  var msgForm = document.getElementById('message-form');
+  msgForm.onsubmit = function (e) {
+    var msg = msgForm.message.value;
+    socket.send(msg);
+    console.log('Sent:', msg);
+
+    return false;
+  }
+
+</script>
+
+</body>
+</html>
