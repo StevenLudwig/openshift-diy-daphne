@@ -8,7 +8,7 @@ don't forget to set redis password) with:
 3) clone your freshly created app skeleton from openshift and cd to <exampleapp>
  (you don't have to clone repo from openshift if you were used CLI tool)
 4) merge this repo with yours
-`$ git remote add upstream -m master https://github.com/raucher/openshift-diy-daphne.git`
+`$ git remote add upstream -m master https://github.com/StevenLudwig/openshift-diy-daphne.git`
 `$ git pull -s recursive -X theirs upstream master`
 `$ git push`
 
